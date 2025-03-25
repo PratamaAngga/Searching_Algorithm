@@ -14,11 +14,23 @@ public class mahasiswaPrestasi20 {
             System.out.println("data sudah penuh");
         }
     }
-
+    
     void tampil (){
         for (mahasiswa20 m:listMhs){
             m.tampilInformasi();
             System.out.println("-----------------------------");
+        }
+    }
+
+    void insertion(){
+        for (int i=1; i<listMhs.length; i++){
+            mahasiswa20 temp = listMhs[i];
+            int j=i;
+            while (j>0 && listMhs[j-1].ipk>temp.ipk) {
+                listMhs[j]=listMhs[j-1];
+                j--;
+            }
+            listMhs[j]=temp;
         }
     }
     
@@ -31,6 +43,21 @@ public class mahasiswaPrestasi20 {
             }
         }
         return posisi;
+    }
+
+    int findBinarySearch(double cari, int left, int right){
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (cari == listMhs[mid].ipk) {
+                return (mid);
+            } else if (listMhs[mid].ipk > cari) {
+                return findBinarySearch(cari, left, mid-1);
+            } else {
+                return findBinarySearch(cari, mid+1, right);
+            }
+        }
+        return -1;
     }
     
     void tampilPosisi(double x, int pos){
@@ -76,17 +103,5 @@ public class mahasiswaPrestasi20 {
 //         mahasiswa20 tmp = listMhs[idxMin];
 //         listMhs[idxMin] = listMhs[i];
 //         listMhs[i] = tmp;
-//     }
-// }
-
-// void insertion(){
-//     for (int i=1; i<listMhs.length; i++){
-//         mahasiswa20 temp = listMhs[i];
-//         int j=i;
-//         while (j>0 && listMhs[j-1].ipk<temp.ipk) {
-//             listMhs[j]=listMhs[j-1];
-//             j--;
-//         }
-//         listMhs[j]=temp;
 //     }
 // }
